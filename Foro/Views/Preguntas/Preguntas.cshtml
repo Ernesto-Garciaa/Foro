@@ -1,0 +1,98 @@
+﻿@model PreguntasModel
+
+@{
+    ViewBag.Title = "Foro";
+}
+
+<div >
+    <form method="post" asp-controller="Preguntas" asp-action="IngresarPregunta">
+        <div class="container register">
+            <div class="row">
+                <div class="col-md-3 register-left"></div>
+                <div class="col-md-9 register-right">
+                    <div class="tab-content">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span asp-validation-for="IdUsuario" class="tex-danger"></span>
+                                <input asp-for="IdUsuario" class="form-control" placeholder="Mi ID"   type="number" />
+                               
+                            </div>
+
+
+                            <br />
+
+                            <div class="form-group">
+                                <span asp-validation-for="Titulo" class="tex-danger"></span>
+                                <input asp-for="Titulo" class="form-control" placeholder="¿Como Aprender c#?" type="text" />
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <span asp-validation-for="Pregunta" class="tex-danger"></span>
+                                <textarea asp-for="Pregunta" class="form-control" placeholder="¿?"> </textarea>
+
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <span asp-validation-for="Fecha" class="tex-danger"></span>
+                                <input asp-for="Fecha" class="form-control" placeholder="" id="fecha-actual" disabled value="" type="text" />
+                                
+                            </div>
+                            <br />
+
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" value="Agregar Pregunta" class="btn btn-primary" asp-action="IngresarPregunta" asp-controller="Preguntas" />
+                        </div>
+
+                       
+                        <br />
+                        @if (ViewData["Error"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @ViewData["Error"]
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+</div>
+
+
+
+
+
+
+
+
+    
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#btnAgregarPregunta").click(function () {
+                $("#divFormulario").toggle();
+            });
+        });
+
+
+        // Obtiene la fecha actual
+        var fecha = new Date();
+
+        // Obtiene los componentes de la fecha actual
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1; // Los meses comienzan en 0
+        var anio = fecha.getFullYear();
+
+        // Formatea la fecha en una cadena legible para humanos
+        var fechaActual = anio + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia;
+
+        // Establece el valor del input con la fecha actual
+        document.getElementById('fecha-actual').value = fechaActual;
+
+    </script>
+}
+
+

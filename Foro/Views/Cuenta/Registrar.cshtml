@@ -1,0 +1,49 @@
+﻿@model UsuarioModel
+
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<form method="post">
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left"></div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span asp-validation-for="idTipoUsuario" class="text-danger"></span>
+                            <input asp-for="idTipoUsuario" class="form-control" placeholder="2" value="2" style="display: none;" type="number" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <span asp-validation-for="nombre" class="text-danger"></span>
+                            <input asp-for="nombre" class="form-control" placeholder="Usuario" type="text" />
+
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <span asp-validation-for="email" class="text-danger"></span>
+                            <input asp-for="email" class="form-control" placeholder="Email" type="email" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <span asp-validation-for="contrasenia" class="text-danger"></span>
+                            <input asp-for="contrasenia" class="form-control" placeholder="Contraseña" type="Password" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" value="Registrarse" class="btn btn-primary" asp-action="Registrar" asp-controller="Cuenta" />
+                    </div>
+                    <br />
+                    @if (ViewData["Error"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewData["Error"]
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
