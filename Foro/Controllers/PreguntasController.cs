@@ -19,39 +19,7 @@ namespace Foro.Controllers
                 {
                     _context = context;
                 }
-        //Aqui
 
-        private int ObtenerIdUsuarioPorNombre(string nombreUsuario)
-        {
-            int idUsuario = 0;
-            using (SqlConnection con = new SqlConnection(_context.Valor))
-            {
-                using (SqlCommand cmd = new SqlCommand("select idUsuario from usuarios;", con))
-                {
-                    cmd.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-                    con.Open();
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                    {
-                        idUsuario = Convert.ToInt32(result);
-                    }
-                    con.Close();
-                }
-            }
-            return idUsuario;
-        }
-
-        public ActionResult MostrarPreguntas()
-        {
-            int idUsuario = ObtenerIdUsuarioPorNombre(User.Identity.Name);
-            PreguntasModel preguntas = new PreguntasModel();
-            preguntas.IdUsuario = idUsuario;
-            // resto del código
-            return View("Preguntas");
-        }
-
-
-        //
 
 
 
@@ -81,6 +49,7 @@ namespace Foro.Controllers
                             cmd.Parameters.Add("@titulo", SqlDbType.VarChar).Value = p.Titulo;
                             cmd.Parameters.Add("@pregunta", SqlDbType.VarChar).Value = p.Pregunta;
                             cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = DateTime.Now.Date;
+                            cmd.Parameters.Add("@estado", SqlDbType.Int).Value = p.estado;
                             con.Open();
                             cmd.ExecuteNonQuery();
                            
@@ -140,7 +109,9 @@ namespace Foro.Controllers
                             pregunta.TituloPregunta = reader["tituloPregunta"].ToString();
                             pregunta.ContenidoPregunta = reader["pregunta"].ToString();
                             pregunta.FechaPregunta = DateTime.Parse(reader["fecha"].ToString());
+                            pregunta.estado = reader["estado"].ToString();
                             preguntas.Add(pregunta);
+
                         }
 
                         con.Close();

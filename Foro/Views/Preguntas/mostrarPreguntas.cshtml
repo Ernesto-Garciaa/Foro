@@ -20,6 +20,7 @@
                 <th>Título</th>
                 <th>Pregunta</th>
                 <th>Fecha</th>
+                <th>Estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -31,8 +32,12 @@
                     <td>@pregunta.TituloPregunta</td>
                     <td>@pregunta.ContenidoPregunta</td>
                     <td>@pregunta.FechaPregunta.ToString("dd/MM/yyyy")</td>
+                    <td>@pregunta.estado</td>
                     <td>
-                        <a href="@Url.Action("IngresarPregunta", "Preguntas", new { id = pregunta.NombreUsuario })">Responder</a>
+                        @if (pregunta.estado == "true")
+                        {
+                            <a href="@Url.Action("IngresarPregunta", "Preguntas", new { id = pregunta.NombreUsuario })">Responder</a>
+                        }
                     </td>
                 </tr>
             }

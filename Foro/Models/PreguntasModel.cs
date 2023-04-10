@@ -8,5 +8,6 @@ namespace Foro.Models
         public string Titulo { get; set; }
         public string Pregunta { get; set; }
         public DateTime Fecha { get; set; }
+        public int estado { get; set; }
     }
 }

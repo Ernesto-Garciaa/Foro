@@ -6,5 +6,6 @@
         public string TituloPregunta { get; set; }
         public string ContenidoPregunta { get; set; }
         public DateTime FechaPregunta { get; set; }
+        public string estado { get; set; }
     }
 }
