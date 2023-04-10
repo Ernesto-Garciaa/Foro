@@ -34,7 +34,7 @@
                     <td>@pregunta.FechaPregunta.ToString("dd/MM/yyyy")</td>
                     <td>@pregunta.estado</td>
                     <td>
-                        @if (pregunta.estado == "true")
+                        @if (@pregunta.estado == "true")
                         {
                             <a href="@Url.Action("IngresarPregunta", "Preguntas", new { id = pregunta.NombreUsuario })">Responder</a>
                         }

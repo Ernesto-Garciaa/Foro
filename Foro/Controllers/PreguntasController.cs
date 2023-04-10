@@ -109,6 +109,7 @@ namespace Foro.Controllers
                             pregunta.TituloPregunta = reader["tituloPregunta"].ToString();
                             pregunta.ContenidoPregunta = reader["pregunta"].ToString();
                             pregunta.FechaPregunta = DateTime.Parse(reader["fecha"].ToString());
+                            //pregunta.estado = reader["estado"].ToString();
                             pregunta.estado = reader["estado"].ToString();
                             preguntas.Add(pregunta);
 
